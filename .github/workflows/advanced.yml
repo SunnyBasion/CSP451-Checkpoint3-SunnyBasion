@@ -4,6 +4,7 @@ on:
   schedule:
     # Runs daily at 2:00 AM ET (06:00 UTC)
     - cron: "0 6 * * *"
+  workflow_dispatch:
 
 jobs:
   security-check:
