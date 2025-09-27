@@ -48,10 +48,11 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 title: '⚠️ Vulnerabilities Found in Dependencies',
-                body: `Total dependencies: ${report.metadata.totalDependencies}
-Total vulnerabilities: ${report.metadata.vulnerabilities.total}
+                body: |
+                  Total dependencies: ${report.metadata.totalDependencies}
+                  Total vulnerabilities: ${report.metadata.vulnerabilities.total}
 
-Please review audit-report.json for details.`
+                  Please review audit-report.json for details.
               });
             } else {
               console.log('No vulnerabilities found.');
