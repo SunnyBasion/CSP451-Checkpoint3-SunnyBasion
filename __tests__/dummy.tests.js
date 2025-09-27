@@ -1,5 +1,5 @@
 /* eslint-env jest */
 
-test('dummy test', () => {
+test("dummy test", () => {
   expect(1 + 1).toBe(2);
 });
