@@ -1,0 +1,16 @@
+{
+  "name": "csp451-checkpoint3",
+  "version": "1.0.0",
+  "description": "CI pipeline project with ESLint and Prettier",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write ."
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.0"
+  }
+}
+
