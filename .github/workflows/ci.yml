@@ -69,4 +69,3 @@ jobs:
             echo "Coverage is below 80% ($COVERAGE%)"
             exit 1
           fi
-
