@@ -1,0 +1,59 @@
+name: Advanced Workflows
+
+on:
+  schedule:
+    # Runs daily at 2:00 AM ET (06:00 UTC)
+    - cron: '0 6 * * *'
+
+jobs:
+  security-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run security audit
+      - name: Run security audit
+        id: audit
+        run: |
+          npm audit --json > audit-report.json
+          echo "Security audit report generated."
+
+      # Step 5: Create GitHub issue if vulnerabilities found
+      - name: Create GitHub issue if vulnerabilities found
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+
+            // Read the audit report
+            const report = JSON.parse(fs.readFileSync('audit-report.json', 'utf8'));
+
+            // Check if there are any vulnerabilities
+            if (report.metadata.totalDependencies > 0 && report.metadata.vulnerabilities.total > 0) {
+              github.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: '⚠️ Vulnerabilities Found in Dependencies',
+                body: `Total dependencies: ${report.metadata.totalDependencies}
+Total vulnerabilities: ${report.metadata.vulnerabilities.total}
+
+Please review audit-report.json for details.`
+              });
+            } else {
+              console.log('No vulnerabilities found.');
+            }
+
