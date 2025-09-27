@@ -8,7 +8,8 @@
     "format:check": "prettier --check .",
     "format:fix": "prettier --write .",
     "test": "jest",
-    "coverage": "jest --coverage --passWithNoTests"
+    "coverage": "jest --coverage --passWithNoTests",
+    "build": "echo 'Building application...'"
   },
   "devDependencies": {
     "coverage-percentage": "^0.0.2",
