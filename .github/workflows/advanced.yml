@@ -3,7 +3,7 @@ name: Advanced Workflows
 on:
   schedule:
     # Runs daily at 2:00 AM ET (06:00 UTC)
-    - cron: '0 6 * * *'
+    - cron: "0 6 * * *"
 
 jobs:
   security-check:
@@ -57,4 +57,3 @@ jobs:
             } else {
               console.log('No vulnerabilities found.');
             }
-
