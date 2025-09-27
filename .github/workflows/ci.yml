@@ -64,7 +64,7 @@ jobs:
 
       - name: Fail if coverage < 80%
         run: |
-          COVERAGE=$(npx coverage-percentage ./coverage/lcov.info)
+          COVERAGE=$(node scripts/check-coverage.js)
           if [ "$COVERAGE" -lt 80 ]; then
             echo "Coverage is below 80% ($COVERAGE%)"
             exit 1

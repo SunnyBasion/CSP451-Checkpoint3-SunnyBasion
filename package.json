@@ -8,12 +8,14 @@
     "format:check": "prettier --check .",
     "format:fix": "prettier --write .",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage --passWithNoTests"
   },
   "devDependencies": {
+    "coverage-percentage": "^0.0.2",
     "enlist": "^0.1.0",
     "eslint": "^8.50.0",
     "jest": "^30.1.3",
+    "lcov-parse": "^1.0.0",
     "prettier": "^3.0.0"
   },
   "dependencies": {
