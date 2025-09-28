@@ -70,7 +70,28 @@ This document provides details about all GitHub Actions workflows in this reposi
 - **Badge not updating**: Check workflow filename in README badge URL matches workflow file.
 
 ---
+## 3. Security Audit Action (Custom Composite Action)
 
+This repository includes a **custom composite action** that runs a security audit on Node.js project dependencies.
+
+### Purpose
+- The **Advanced Workflow** uses this **custom composite action** (`security-audit`) to:
+  - Run `npm audit` and generate a JSON report (`audit-report.json`)
+  - Automatically create a GitHub issue if any vulnerabilities are found
+- By encapsulating these steps in a composite action, the workflow is **cleaner, reusable, and maintainable**.
+
+### Inputs
+- `node-version` (default: 18) – Node.js version used for the workflow.
+
+### Usage
+The composite action is called in the **Advanced Workflow**:
+
+```yaml
+steps:
+  - name: Run Security Audit
+    uses: ./.github/actions/security-audit
+    with:
+      node-version: 18
 ### Notes
 - The two workflows are independent; Advanced Workflow does not depend on Deployment Workflow.
 - Workflows are documented for clarity, maintainability, and reproducibility.
