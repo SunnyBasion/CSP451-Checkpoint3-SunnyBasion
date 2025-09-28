@@ -45,16 +45,19 @@ jobs:
 
             // Check if there are any vulnerabilities
             if (report.metadata.totalDependencies > 0 && report.metadata.vulnerabilities.total > 0) {
+              const bodyMessage = [
+                `Total dependencies: ${report.metadata.totalDependencies}`,
+                `Total vulnerabilities: ${report.metadata.vulnerabilities.total}`,
+                '',
+                'Please review audit-report.json for details.'
+              ].join('\n');
+
               await github.rest.issues.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 title: '⚠️ Vulnerabilities Found in Dependencies',
-                body: `Total dependencies: ${report.metadata.totalDependencies}
-Total vulnerabilities: ${report.metadata.vulnerabilities.total}
-
-Please review audit-report.json for details.`
+                body: bodyMessage
               });
             } else {
               console.log('No vulnerabilities found.');
             }
-
