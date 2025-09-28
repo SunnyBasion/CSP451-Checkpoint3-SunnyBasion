@@ -3,7 +3,7 @@
 ![Security Audit Workflow](https://github.com/SunnyBasion/CSP451-Checkpoint3-SunnyBasion/actions/workflows/advanced.yml/badge.svg)
 ![Deployment Workflow](https://github.com/SunnyBasion/CSP451-Checkpoint3-SunnyBasion/actions/workflows/deploy.yml/badge.svg)
 
-# Week 3: GitHub Actions and CI/CD Automation | By Sunny Basion 
+# Week 3: GitHub Actions and CI/CD Automation
 
 ## Learning Objectives  
 This checkpoint focuses on implementing automation through **GitHub Actions**. By the end of this week, you should be able to:  
