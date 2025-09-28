@@ -17,7 +17,7 @@ This checkpoint focuses on implementing automation through **GitHub Actions**. B
 
 ## Assignment Overview  
 
-### Part 1: Basic CI Pipeline (35 marks)  
+### Part 1: Basic CI Pipeline   
 Create a workflow file:  
 `.github/workflows/ci.yml`  
 
@@ -44,7 +44,7 @@ Create a workflow file:
 
 ---
 
-### Part 2: Advanced Workflows (35 marks)  
+### Part 2: Advanced Workflows  
 
 #### Scheduled Workflow  
 - Run daily dependency check  
@@ -63,7 +63,7 @@ Create a workflow file:
 
 ---
 
-### Part 3: Workflow Documentation (30 marks)  
+### Part 3: Workflow Documentation 
 Create a `WORKFLOWS.md` file including:  
 - Purpose of each workflow  
 - Trigger conditions  
