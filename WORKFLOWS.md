@@ -73,7 +73,7 @@ This repository includes a **custom composite action** that runs a security audi
 - The **Advanced Workflow** uses this **custom composite action** (`security-audit`) to:
   - Run `npm audit` and generate a JSON report (`audit-report.json`)
   - Automatically create a GitHub issue if any vulnerabilities are found
-- By encapsulating these steps in a composite action, the workflow is **cleaner, reusable, and maintainable**.
+- By combining these steps in a composite action, the workflow is **cleaner, reusable, and maintainable**.
 
 ### Inputs
 - `node-version` (default: 18) – Node.js version used for the workflow.
