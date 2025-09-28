@@ -74,9 +74,10 @@ Create a `WORKFLOWS.md` file including:
 ---
 
 ## Deliverables  
-- [ ] Repository containing at least **3 workflow files**  
-- [ ] Screenshot of successful workflow runs  
-- [ ] **Actions tab** showing green checkmarks  
-- [ ] README with **status badges**  
-- [ ] `WORKFLOWS.md` documenting workflows  
+✅ Repository containing at least **3 workflow files**  
+✅ Screenshot of successful workflow runs  
+✅ **Actions tab** showing green checkmarks  
+✅ README with **status badges**  
+✅ `WORKFLOWS.md` documenting workflows  
+
 
