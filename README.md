@@ -1,6 +1,8 @@
 # CSP451 Checkpoint 3
 
+![Security Audit Workflow](https://github.com/SunnyBasion/CSP451-Checkpoint3-SunnyBasion/actions/workflows/advanced.yml/badge.svg)
 ![Deployment Workflow](https://github.com/SunnyBasion/CSP451-Checkpoint3-SunnyBasion/actions/workflows/deploy.yml/badge.svg)
+
 
 # Workflow Documentation
 
