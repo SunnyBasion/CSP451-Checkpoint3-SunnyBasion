@@ -11,53 +11,51 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: 18
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run security audit
       - name: Run security audit
-        id: audit
         run: |
           npm audit --json > audit-report.json
           echo "Security audit report generated."
 
-      # Step 5: Create GitHub issue if vulnerabilities found
       - name: Create GitHub issue if vulnerabilities found
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
+            const path = require('path');
+            const reportPath = path.join(process.cwd(), 'audit-report.json');
 
-            // Read the audit report
-            const report = JSON.parse(fs.readFileSync('audit-report.json', 'utf8'));
+            if (!fs.existsSync(reportPath)) {
+              console.log('⚠️ No audit report found.');
+              process.exit(0);
+            }
 
-            // Check if there are any vulnerabilities
-            if (report.metadata.totalDependencies > 0 && report.metadata.vulnerabilities.total > 0) {
-              const bodyMessage = [
-                `Total dependencies: ${report.metadata.totalDependencies}`,
-                `Total vulnerabilities: ${report.metadata.vulnerabilities.total}`,
-                '',
-                'Please review audit-report.json for details.'
-              ].join('\n');
+            const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+            const totalDeps = report.metadata?.totalDependencies || 0;
+            const totalVulns = report.metadata?.vulnerabilities?.total || 0;
+
+            if (totalDeps > 0 && totalVulns > 0) {
+              const message = `Total dependencies: ${totalDeps}\nTotal vulnerabilities: ${totalVulns}\n\nPlease review audit-report.json for details.`;
 
               await github.rest.issues.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 title: '⚠️ Vulnerabilities Found in Dependencies',
-                body: bodyMessage
+                body: message
               });
+
+              console.log('🚨 GitHub issue created for vulnerabilities.');
             } else {
-              console.log('No vulnerabilities found.');
+              console.log('✅ No vulnerabilities found.');
             }
